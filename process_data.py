@@ -3,6 +3,39 @@ from votacao.models import Questao, Opcao
 
 
 # ==========================================
+# ALÍNEA C) - Apagar todas as questões da BD
+# ==========================================
+def apagar_todas_questoes():
+    Questao.objects.all().delete()
+    print("Todas as questões foram apagadas")
+
+def testar_alinea_c():
+    print("\n--- Teste Alínea c) ---")
+    apagar_todas_questoes()
+
+# ==========================================
+# ALÍNEA D) - Mostrar uma questão completa
+# ==========================================
+def mostrar_questao(questao):
+    print(f"\nQuestão: {questao.texto_da_questao}")
+    print("Opções:")
+
+    opcoes = questao.opcao_set.all()
+
+    if not opcoes:
+        print("  (Sem opções registadas)")
+        return
+
+    for opcao in opcoes:
+        print(f" - {opcao.texto_da_opcao} ({opcao.votos} votos)")
+
+def testar_alinea_d():
+    print("\n--- Teste Alínea d) ---")
+    for q in Questao.objects.all():
+        mostrar_questao(q)
+
+
+# ==========================================
 # ALÍNEA G) - Mostrar opção com mais votos
 # ==========================================
 def mostrar_opcao_mais_votada(questao):
@@ -56,5 +89,7 @@ def testar_alinea_h():
 # ==========================================
 # EXECUTAR OS TESTES
 # ==========================================
+testar_alinea_c()
+testar_alinea_d()
 testar_alinea_g()
 testar_alinea_h()

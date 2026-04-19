@@ -92,15 +92,24 @@ def mostrar_questao(questao):
     for opcao in opcoes:
         print(f" - {opcao.opcao_texto} ({opcao.votos} votos)")
 
-def testar_alinea_d():
-    print("\n--- Teste Alínea d) ---")
-    for q in Questao.objects.all():
-        mostrar_questao(q)
+#def testar_alinea_d():
+#   print("\n--- Teste Alínea d) ---")
+#   for q in Questao.objects.all():
+#       mostrar_questao(q)
 
 # e)
+def mostrar_todas_questoes():
+    questoes = Questao.objects.all()
 
+    for q in questoes:
+        mostrar_questao(q)
 
 # f)
+def mostrar_questoes_com_prefixo(prefixo):
+    questoes = Questao.objects.filter(texto__startswith=prefixo)
+
+    for q in questoes:
+        mostrar_questao(q)
 
 
 # g)
@@ -154,6 +163,6 @@ def testar_alinea_h():
 
 testar_alinea_a_b()
 # testar_alinea_c()
-testar_alinea_d()
+#testar_alinea_d()
 testar_alinea_g()
 testar_alinea_h()

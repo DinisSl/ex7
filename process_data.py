@@ -106,7 +106,11 @@ def mostrar_todas_questoes():
 
 # f)
 def mostrar_questoes_com_prefixo(prefixo):
-    questoes = Questao.objects.filter(texto__startswith=prefixo)
+    questoes = Questao.objects.filter(questao_texto__startswith=prefixo)
+
+    if  not questoes:
+        print(f"Não foram encontradas questões que começam por '{prefixo}'.")
+        return
 
     for q in questoes:
         mostrar_questao(q)
@@ -164,5 +168,7 @@ def testar_alinea_h():
 testar_alinea_a_b()
 # testar_alinea_c()
 #testar_alinea_d()
-testar_alinea_g()
-testar_alinea_h()
+#testar_alinea_g()
+#testar_alinea_h()
+#mostrar_questoes_com_prefixo("qua")
+mostrar_todas_questoes()

@@ -30,7 +30,7 @@ def testar_alinea_a_b():
 
 
         criar_questao(
-            "Qual é a tua cor favorita?",
+            "Escolhe a tua cor favorita?",
             [
                 ["Azul", 5],
                 ["Verde", 3],
@@ -92,10 +92,15 @@ def mostrar_questao(questao):
     for opcao in opcoes:
         print(f" - {opcao.opcao_texto} ({opcao.votos} votos)")
 
-#def testar_alinea_d():
-#   print("\n--- Teste Alínea d) ---")
-#   for q in Questao.objects.all():
-#       mostrar_questao(q)
+def testar_alinea_d():
+    print("\n--- Teste Alínea d) ---")
+
+    primeira_questao = Questao.objects.first()
+
+    if primeira_questao is not None:
+        mostrar_questao(primeira_questao)
+    else:
+        print("Base de dados vazia")
 
 # e)
 def mostrar_todas_questoes():
@@ -103,6 +108,10 @@ def mostrar_todas_questoes():
 
     for q in questoes:
         mostrar_questao(q)
+
+def testar_alinea_e():
+    print("\n--- Teste Alínea e) ---")
+    mostrar_todas_questoes()
 
 # f)
 def mostrar_questoes_com_prefixo(prefixo):
@@ -115,13 +124,15 @@ def mostrar_questoes_com_prefixo(prefixo):
     for q in questoes:
         mostrar_questao(q)
 
-
+def testar_alinea_f(pre):
+    print("\n--- Teste Alínea f) ---")
+    mostrar_questoes_com_prefixo(pre)
 # g)
 def mostrar_opcao_mais_votada(questao):
     opcoes = questao.opcao_set.all()
 
     if not opcoes:
-        print(f"A questão '{questao.questao_texto}' não tem opções.")
+        print("Esta questão não tem opções.")
         return
 
     max_votos = 0
@@ -163,12 +174,14 @@ def testar_alinea_h():
     print("O número total de votos registados na BD é: ", total)
 
 
-# EXECUTAR OS TESTES
+# TESTES
 
 testar_alinea_a_b()
-# testar_alinea_c()
-#testar_alinea_d()
-#testar_alinea_g()
-#testar_alinea_h()
-#mostrar_questoes_com_prefixo("qua")
-mostrar_todas_questoes()
+# testar_alinea_c() #Comentada para poder testar as outras funções
+testar_alinea_d()
+testar_alinea_e()
+testar_alinea_f("Qual")
+testar_alinea_g()
+testar_alinea_h()
+
+

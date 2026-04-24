@@ -17,5 +17,15 @@ class Opcao(models.Model):
     opcao_texto = models.CharField(max_length=200)
     votos = models.IntegerField(default=0)
 
+
     def __str__ (self):
         return self.opcao_texto
+
+
+class Comentario(models.Model):
+    questao=models.ManyToManyField(Questao)
+    comentario_texto=models.CharField(max_length=200)
+    nome_autor = models.CharField(max_length=200)
+
+    def __str__ (self):
+        return self.comentario_texto

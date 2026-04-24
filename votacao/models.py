@@ -23,7 +23,7 @@ class Opcao(models.Model):
 
 
 class Comentario(models.Model):
-    questao=models.ManyToManyField(Questao)
+    questao=models.ForeignKey(Questao, on_delete=models.CASCADE)
     comentario_texto=models.CharField(max_length=200)
     nome_autor = models.CharField(max_length=200)
 

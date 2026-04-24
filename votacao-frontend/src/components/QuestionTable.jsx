@@ -34,9 +34,9 @@ function QuestionTable() {
           <tr key={question.id}>
             <td>{question.questao_texto}</td>
             <td style={centered}>
-              <DetailModal question={question} />
+              <DetailModal question={question}/>
               &nbsp;
-              <VoteModal question={question} />
+              <VoteModal question={question}/>
             </td>
           </tr>
         ))}

@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Questao, Opcao
+from .models import Questao, Opcao, Comentario
+
 
 class QuestaoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,3 +12,8 @@ class OpcaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Opcao
         fields = ('id', 'questao', 'opcao_texto', 'votos')
+
+class ComentarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comentario
+        fields = ('id', 'questao' , 'comentario_texto', 'nome_autor')

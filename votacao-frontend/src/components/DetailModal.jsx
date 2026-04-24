@@ -6,8 +6,10 @@ import DetailData from "./DetailData";
 function DetailModal({ question }) {
   // (1) (2)
   const URL_OPTIONS = "http://localhost:8000/votacao/api/options/";
+  const URL_COMMENTS = "http://localhost:8000/votacao/api/comentarios/";
   const [showModal, setShowModal] = useState(false);
   const [optionList, setOptionList] = useState([]);
+  const [commentList, setCommentList] = useState([]);
 
   // (3) (4) (5)
   const getOptions = () => {
@@ -15,6 +17,9 @@ function DetailModal({ question }) {
       .then(request => {
         setOptionList(request.data);
       });
+    axios.get(URL_COMMENTS + question.id).then(request => {
+      setCommentList(request.data);
+    });
   };
 
   // (6)
@@ -35,6 +40,7 @@ function DetailModal({ question }) {
         <ModalBody>
           <DetailData
             options={optionList}
+            comments={commentList}
             question={question}
             toggle={toggleModal}
           />

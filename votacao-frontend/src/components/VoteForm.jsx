@@ -1,38 +1,50 @@
 import React, { useState } from "react";
-import { Button, Form, FormGroup, Table, Label } from "reactstrap";
+import { Button, Form, FormGroup, Table, Label, Input } from "reactstrap";
 import axios from "axios";
 import moment from "moment";
 
 function VoteForm({ options, question, toggle }) {
-  // (1) (2)
   const URL_OPTION = "http://localhost:8000/votacao/api/option/";
+  const URL_COMMENT = "http://localhost:8000/votacao/api/comentarios/";
   const [selectedOption, setSelectedOption] = useState(-1);
+  const [nomeAutor, setNomeAutor] = useState("");
+  const [textoComentario, setTextoComentario] = useState("");
 
-  // (3)
   const voteAndCloseModal = (event) => {
     event.preventDefault();
+
+    // 1. Lógica de Votação (PUT)
     if (selectedOption >= 0) {
       const option = { ...options[selectedOption] };
       option.votos++;
-      axios.put(URL_OPTION + option.id, option).then(() => {
-        // Optional: you could add a state refresh here
+      axios.put(URL_OPTION + option.id, option);
+    }
+
+    // 2. Lógica de Comentário (POST)
+    if (nomeAutor && textoComentario) {
+      axios.post(URL_COMMENT + question.id, {
+        nome_autor: nomeAutor,
+        comentario_texto: textoComentario,
+        questao: question.id
+      }).then(() => {
+        console.log("Comentário submetido com sucesso");
+      }).catch(err => {
+        console.error("Erro ao submeter comentário", err);
       });
     }
+
     toggle();
   };
 
-  // (4)
   const optionChangeHandler = (event) => {
-    const optionIndex = parseInt(event.target.value);
-    setSelectedOption(optionIndex);
+    setSelectedOption(parseInt(event.target.value));
   };
 
   return (
     <>
       <Form onSubmit={voteAndCloseModal}>
-        {/* (5) */}
         <FormGroup>
-          <b>Texto:</b>
+          <b>Texto da Questão:</b>
           <p>{question.questao_texto}</p>
           <b>Data de publicação:</b>
           <p>{moment(question.pub_data).format("YYYY-MM-DD HH:mm")}</p>
@@ -42,12 +54,11 @@ function VoteForm({ options, question, toggle }) {
           <Table>
             <thead>
               <tr>
-                <th align="left">Opção</th>
+                <th align="left">Opções de Voto</th>
               </tr>
             </thead>
             <tbody>
               {options.map((o, index) => (
-                // (6)
                 <tr key={o.id}>
                   <td align="left">
                     <FormGroup check>
@@ -69,7 +80,33 @@ function VoteForm({ options, question, toggle }) {
             </tbody>
           </Table>
         </FormGroup>
-        <Button color="success">Votar</Button> {/* (5) */}
+
+        <hr />
+        <h5>Deixe um comentário (opcional)</h5>
+
+        <FormGroup>
+          <Label for="nomeAutor">Seu Nome:</Label>
+          <Input
+            type="text"
+            id="nomeAutor"
+            placeholder="Digite seu nome"
+            value={nomeAutor}
+            onChange={(e) => setNomeAutor(e.target.value)}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label for="textoComentario">Comentário:</Label>
+          <Input
+            type="textarea"
+            id="textoComentario"
+            placeholder="Escreva sua opinião..."
+            value={textoComentario}
+            onChange={(e) => setTextoComentario(e.target.value)}
+          />
+        </FormGroup>
+
+        <Button color="success" block>Votar e Comentar</Button>
       </Form>
     </>
   );

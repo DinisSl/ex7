@@ -77,9 +77,9 @@ def option_detail(request, option_id):
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
-def comentarios(request, questao_id):
+def comentarios(request, question_id):
 
-    questao = get_object_or_404(Questao, pk=questao_id)
+    questao = get_object_or_404(Questao, pk=question_id)
 
     if request.method == 'GET':
         comentarios = Comentario.objects.filter(questao=questao)

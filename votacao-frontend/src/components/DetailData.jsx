@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form, FormGroup, Table } from "reactstrap";
 import moment from "moment";
 
-function DetailData({ options, question, toggle }) {
+function DetailData({ options, question, comments, toggle }) {
   // (1)
   const closeModal = (e) => {
     // (2)
@@ -38,7 +38,32 @@ function DetailData({ options, question, toggle }) {
           </tbody>
         </Table>
       </FormGroup>
-      <Button color="primary">Fechar</Button> {/* (3) */}
+
+      <FormGroup>
+        <b>Comentários:</b>
+          <Table striped size="sm">
+            <thead>
+              <tr>
+                <th>Autor</th>
+                <th>Comentário</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comments && comments.length > 0 ? (
+                comments.map((c) => (
+                  <tr key={c.id}>
+                    {/* Campos: nome_autor e comentario_texto do seu Serializer */}
+                    <td>{c.nome_autor}</td>
+                    <td>{c.comentario_texto}</td>
+                  </tr>
+                ))
+              ) : (
+              <tr><td colSpan="2">Sem comentários.</td></tr>
+              )}
+            </tbody>
+          </Table>
+      </FormGroup>
+        <Button color="primary">Fechar</Button> {/* (3) */}
     </Form>
   );
 }

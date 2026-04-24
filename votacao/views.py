@@ -75,3 +75,20 @@ def option_detail(request, option_id):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def comentarios(request, questao_id):
+
+    questao = get_object_or_404(Questao, pk=questao_id)
+
+    if request.method == 'GET':
+        comentarios = Comentario.objects.filter(questao=questao)
+        serializer = ComentarioSerializer(comentarios, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = ComentarioSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(questao=questao)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

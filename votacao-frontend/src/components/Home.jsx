@@ -6,8 +6,8 @@ import { Container, Row, Col } from "reactstrap";
 function Home() {
   return (
     <>
-      <Header />
-      <Content />
+      <Header/>
+      <Content/>
     </>
   );
 }
@@ -17,7 +17,7 @@ function Content() {
     <Container style={{ marginTop: "20px", maxWidth: "800px" }}>
       <Row>
         <Col>
-          <QuestionTable />
+          <QuestionTable/>
         </Col>
       </Row>
     </Container>

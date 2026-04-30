@@ -1,42 +1,32 @@
-import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import VoteForm from "./VoteForm";
+import {useLocation, useNavigate} from "react-router-dom";
 
-function VoteModal({ question }) {
+function VoteModal() {
   const URL_OPTIONS = "http://localhost:8000/votacao/api/options/";
-  const [showModal, setShowModal] = useState(false);
+  const URL_COMMENT = "http://localhost:8000/votacao/api/comentarios/";
+
+
   const [optionList, setOptionList] = useState([]);
 
-  const getOptions = () => {
-    axios.get(URL_OPTIONS + question.id)
+  const location = useLocation();
+  const questaoRecebida = location.state.id;
+  const navigate = useNavigate();
+
+
+
+  useEffect(() => {
+    axios.get(URL_OPTIONS + questaoRecebida.id)
       .then(request => {
         setOptionList(request.data);
-      });
-  };
-
-  const toggleModal = () => {
-    if (!showModal) getOptions();
-    setShowModal(showModal => !showModal);
-  };
+      })
+  }, [questaoRecebida]);
 
   return (
     <>
-      <Button onClick={toggleModal} color="success">
-        Votar
-      </Button>
-      <Modal isOpen={showModal} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>
-          Voto na questão {question.id}
-        </ModalHeader>
-        <ModalBody>
-          <VoteForm
-            options={optionList}
-            question={question}
-            toggle={toggleModal}
-          />
-        </ModalBody>
-      </Modal>
+
+
+
     </>
   );
 }

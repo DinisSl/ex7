@@ -41,7 +41,7 @@ function QuestionTable() {
             <td style={centered}>
               <button onClick={() => navigate("/Details", {state:{id:question.id}})}>Detalhes</button>
               &nbsp;
-              <button onClick={() => navigate("/Vote")}>Votar</button>
+              <button onClick={() => navigate("/Vote",{state:{id:question.id}})}>Votar</button>
             </td>
           </tr>
         ))}

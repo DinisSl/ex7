@@ -10,8 +10,7 @@ function VoteForm({ options, question, toggle }) {
   const [nomeAutor, setNomeAutor] = useState("");
   const [textoComentario, setTextoComentario] = useState("");
 
-  const voteAndCloseModal = (event) => {
-    event.preventDefault();
+
 
     // 1. Lógica de Votação (PUT)
     if (selectedOption >= 0) {

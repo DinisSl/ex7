@@ -42,6 +42,8 @@ function QuestionTable() {
               <button onClick={() => navigate("/Details", {state:{id:question.id}})}>Detalhes</button>
               &nbsp;
               <button onClick={() => navigate("/Vote")}>Votar</button>
+              &nbsp;
+              <button onClick={() => navigate("/Edit", {state:{id:question.id}})}>Editar</button>
             </td>
           </tr>
         ))}

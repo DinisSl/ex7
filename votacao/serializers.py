@@ -13,6 +13,7 @@ class OpcaoSerializer(serializers.ModelSerializer):
         model = Opcao
         fields = ('id', 'questao', 'opcao_texto', 'votos')
 
+
 class ComentarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comentario

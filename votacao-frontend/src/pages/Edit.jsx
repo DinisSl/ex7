@@ -1,16 +1,16 @@
 import "../App.css"
 import "../index.css"
-import Home from "../components/Home.jsx"
 
 
-const Homepage = () => {
+
+const Edit = () => {
 
 
     return (
     <>
 
     <main>
-        <Home/>
+
     </main>
 
     </>
@@ -19,4 +19,4 @@ const Homepage = () => {
 
 }
 
-export default Homepage
+export default Edit

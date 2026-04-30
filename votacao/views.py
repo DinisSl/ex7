@@ -1,3 +1,6 @@
+from functools import partial
+from operator import truediv
+
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -20,15 +23,19 @@ def questions(request):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT', 'DELETE'])  # (2) e (4)
+@api_view(['GET', 'PUT', 'DELETE'])  # (2) e (4)
 def question_detail(request, question_id):
     try:
         question = Questao.objects.get(pk=question_id)
     except Questao.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    if request.method == 'PUT':  # (4)
-        serializer = QuestaoSerializer(question, data=request.data)
+    if request.method == 'GET':
+        serializer = QuestaoSerializer(question)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = QuestaoSerializer(question, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)

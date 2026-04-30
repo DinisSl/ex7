@@ -5,15 +5,20 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
 function QuestionTable() {
-  const URL_QUESTIONS = "http://localhost:8000/votacao/api/questions/"; // (1)
-  const [questionList, setQuestionList] = useState([]); // (2)
+  const URL_QUESTIONS = "http://localhost:8000/votacao/api/questions/";
+  const [questionList, setQuestionList] = useState([]);
 
-  const getQuestions = () => { // (3)
+  const getQuestions = () => {
     axios.get(URL_QUESTIONS)
       .then((request) => {
         setQuestionList(request.data);
       });
   };
+
+  const deleteQuestion = (id) => {
+    axios.delete(URL_QUESTIONS + id + '/').then(() => {
+      getQuestions();}
+    )};
 
   useEffect(() => {
     getQuestions();
@@ -39,13 +44,15 @@ function QuestionTable() {
           <tr key={question.id}>
             <td>{question.questao_texto}</td>
             <td style={centered}>
-                <Button class="danger">Apagar</Button>
-                &nbsp;
-                <Button class="info" onClick={() => navigate("/Details", {state:{id:question.id}})}>Detalhes</Button>
-                &nbsp;
-                <Button color="success" onClick={() => navigate("/Vote", { state: { id:question.id } })}>Votar</Button>
-                &nbsp;
-                <Button class="warning" onClick={() => navigate("/Edit", {state:{id:question.id}})}>Editar</Button>
+              <Button className="btn btn-danger"
+                onClick={() => deleteQuestion(question.id)}
+              >Apagar</Button>
+              &nbsp;
+              <Button className="btn btn-info" onClick={() => navigate("/Details", {state:{id:question.id}})}>Detalhes</Button>
+              &nbsp;
+              <Button color="success" onClick={() => navigate("/Vote", {state:{id:question.id}})}>Votar</Button>
+              &nbsp;
+              <Button className="btn btn-warning" onClick={() => navigate("/Edit", {state:{id:question.id}})}>Editar</Button>
             </td>
           </tr>
         ))}

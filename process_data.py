@@ -178,10 +178,9 @@ def testar_alinea_h():
 
 testar_alinea_a_b()
 # testar_alinea_c() #Comentada para poder testar as outras funções
-testar_alinea_d()
-testar_alinea_e()
-testar_alinea_f("Qual")
-testar_alinea_g()
-testar_alinea_h()
-
+# testar_alinea_d()
+# testar_alinea_e()
+# testar_alinea_f("Qual")
+# testar_alinea_g()
+# testar_alinea_h()x
 

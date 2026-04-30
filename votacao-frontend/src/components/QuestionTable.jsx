@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "reactstrap";
+import {Button, Table} from "reactstrap";
 import axios from "axios";
 
 import {useNavigate} from "react-router-dom";
@@ -39,9 +39,13 @@ function QuestionTable() {
           <tr key={question.id}>
             <td>{question.questao_texto}</td>
             <td style={centered}>
-              <button onClick={() => navigate("/Details", {state:{id:question.id}})}>Detalhes</button>
+              <Button class="danger">Apagar</Button>
               &nbsp;
-              <button onClick={() => navigate("/Vote",{state:{id:question.id}})}>Votar</button>
+              <Button class="info" onClick={() => navigate("/Details", {state:{id:question.id}})}>Detalhes</Button>
+              &nbsp;
+              <Button class="success" onClick={() => navigate("/Vote")}>Votar</Button>
+              &nbsp;
+              <Button class="warning" onClick={() => navigate("/Edit", {state:{id:question.id}})}>Editar</Button>
             </td>
           </tr>
         ))}

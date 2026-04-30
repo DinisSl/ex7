@@ -1,13 +1,11 @@
+
+- Bernardo -
 Criar questões (Botão)
-Apagar questões (Botão)
 
-- Dinis -
-Editar texto questões
-
-- Afonso -
+- Afonso (Na página Edit) -
 Editar texto opções
 
-- Carlos -
+- Carlos (Ná página Edit) -
 Acrescentar opções
 Apagar opções
 

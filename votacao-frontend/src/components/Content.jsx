@@ -8,10 +8,10 @@ function Content() {
     <Container style={{ marginTop: "20px", maxWidth: "800px" }}>
       <Row>
         <Col>
-            <CreateQuestion/>
-            <hr/>
           <QuestionTable/>
         </Col>
+        <hr/>
+        <CreateQuestion/>
       </Row>
     </Container>
   );

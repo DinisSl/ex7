@@ -39,13 +39,13 @@ function QuestionTable() {
           <tr key={question.id}>
             <td>{question.questao_texto}</td>
             <td style={centered}>
-              <Button class="danger">Apagar</Button>
-              &nbsp;
-              <Button class="info" onClick={() => navigate("/Details", {state:{id:question.id}})}>Detalhes</Button>
-              &nbsp;
-              <Button class="success" onClick={() => navigate("/Vote")}>Votar</Button>
-              &nbsp;
-              <Button class="warning" onClick={() => navigate("/Edit", {state:{id:question.id}})}>Editar</Button>
+                <Button class="danger">Apagar</Button>
+                &nbsp;
+                <Button class="info" onClick={() => navigate("/Details", {state:{id:question.id}})}>Detalhes</Button>
+                &nbsp;
+                <Button color="success" onClick={() => navigate("/Vote", { state: { id:question.id } })}>Votar</Button>
+                &nbsp;
+                <Button class="warning" onClick={() => navigate("/Edit", {state:{id:question.id}})}>Editar</Button>
             </td>
           </tr>
         ))}

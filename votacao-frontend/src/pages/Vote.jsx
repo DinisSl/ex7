@@ -7,13 +7,13 @@ const Vote = () => {
 
 
     return (
-    <>
+        <>
 
-    <main>
+            <main>
 
-    </main>
+            </main>
 
-    </>
+        </>
     )
 
 

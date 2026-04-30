@@ -1,22 +1,14 @@
-import "../App.css"
-import "../index.css"
-import Home from "../components/Home.jsx"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from "../components/Header";
+import Content from "../components/Content.jsx";
 
-
-const Homepage = () => {
-
-
-    return (
+function Homepage() {
+  return (
     <>
-
-    <main>
-        <Home/>
-    </main>
-
+      <Header/>
+      <Content/>
     </>
-    )
-
-
+  );
 }
 
-export default Homepage
+export default Homepage;

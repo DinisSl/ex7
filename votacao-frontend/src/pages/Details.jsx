@@ -7,13 +7,13 @@ const Details = () => {
 
 
     return (
-    <>
+        <>
 
-    <main>
+            <main>
 
-    </main>
+            </main>
 
-    </>
+        </>
     )
 
 

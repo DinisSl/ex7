@@ -7,13 +7,13 @@ const Edit = () => {
 
 
     return (
-    <>
+        <>
 
-    <main>
+            <main>
 
-    </main>
+            </main>
 
-    </>
+        </>
     )
 
 

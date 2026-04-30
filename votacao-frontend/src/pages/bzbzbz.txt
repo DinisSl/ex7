@@ -1,0 +1,13 @@
+Criar questões (Botão)
+Apagar questões (Botão)
+
+- Dinis -
+Editar texto questões
+
+- Afonso -
+Editar texto opções
+
+- Carlos -
+Acrescentar opções
+Apagar opções
+

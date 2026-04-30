@@ -1,6 +1,3 @@
-import "../App.css"
-import "../index.css"
-
 
 
 const Edit = () => {
@@ -8,11 +5,9 @@ const Edit = () => {
 
     return (
         <>
-
             <main>
 
             </main>
-
         </>
     )
 

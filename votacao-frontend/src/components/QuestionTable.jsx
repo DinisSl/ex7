@@ -43,6 +43,6 @@ function QuestionTable() {
       </tbody>
     </Table>
   );
-} // Added missing closing brace for the function
+}
 
 export default QuestionTable;

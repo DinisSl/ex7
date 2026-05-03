@@ -19,9 +19,26 @@ const Edit = () => {
     axios.put(URL_QUESTIONS + questaoRecebida + '/', {
       questao_texto: questionText,
     }).then(() => {
-      navigate("/");
-    });
+
+        const pedidos = optionList.map((opcao) => {
+            return axios.put("http://localhost:8000/votacao/api/option/" + opcao.id + '/', {
+                opcao_texto: opcao.opcao_texto,
+            });
+        });
+// usei o chat para procurar a melhor maneira de esperar que todas as opções fossem atualizadas liga tambem ao partial no serializer
+        Promise.all(pedidos).then(() => {
+            navigate("/");
+            });
+        });
   };
+
+  const handleOptionChange = (id, newText) => {
+    const updatedOptions = optionList.map((opt) =>
+        opt.id === id ? { ...opt, opcao_texto: newText } : opt
+    );
+  setOptionList(updatedOptions);
+};
+
 
   useEffect(() => {
     axios.get(URL_OPTIONS + questaoRecebida + '/').then(request => {
@@ -52,7 +69,13 @@ const Edit = () => {
         <tbody>
           {optionList.map((opcao) => (
             <tr key={opcao.id}>
-              <td>- {opcao.opcao_texto}</td>
+              <td>
+                <Input
+                    type="text"
+                    value={opcao.opcao_texto}
+                    onChange={(e) => handleOptionChange(opcao.id, e.target.value)}
+                />
+              </td>
             </tr>
           ))}
         </tbody>

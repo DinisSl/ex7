@@ -69,7 +69,7 @@ def option_detail(request, option_id):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'PUT':
-        serializer = OpcaoSerializer(option, data=request.data)
+        serializer = OpcaoSerializer(option, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)

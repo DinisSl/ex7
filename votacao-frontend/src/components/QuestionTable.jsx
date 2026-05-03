@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {Button, Table} from "reactstrap";
 import axios from "axios";
 
@@ -18,7 +18,8 @@ function QuestionTable() {
   const deleteQuestion = (id) => {
     axios.delete(URL_QUESTIONS + id + '/').then(() => {
       getQuestions();}
-    )};
+    )
+  };
 
   useEffect(() => {
     getQuestions();
@@ -43,16 +44,13 @@ function QuestionTable() {
         {questionList.map((question) => (
           <tr key={question.id}>
             <td>{question.questao_texto}</td>
-            <td style={centered}>
-              <Button className="btn btn-danger"
-                onClick={() => deleteQuestion(question.id)}
-              >Apagar</Button>
-              &nbsp;
-              <Button className="btn btn-info" onClick={() => navigate("/Details", {state:{id:question.id}})}>Detalhes</Button>
-              &nbsp;
-              <Button color="success" onClick={() => navigate("/Vote", {state:{id:question.id}})}>Votar</Button>
-              &nbsp;
-              <Button className="btn btn-warning" onClick={() => navigate("/Edit", {state:{id:question.id}})}>Editar</Button>
+            <td>
+              <div className="d-flex justify-content-center flex-nowrap gap-2">
+                <Button color="danger" onClick={() => deleteQuestion(question.id)}>Apagar</Button>
+                <Button color="info" onClick={() => navigate("/Details", {state:{id:question.id}})}>Detalhes</Button>
+                <Button color="success" onClick={() => navigate("/Vote", {state:{id:question.id}})}>Votar</Button>
+                <Button color="warning" onClick={() => navigate("/Edit", {state:{id:question.id}})}>Editar</Button>
+              </div>
             </td>
           </tr>
         ))}

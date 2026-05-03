@@ -47,7 +47,6 @@ def question_detail(request, question_id):
 @api_view(['GET', 'POST'])
 def options(request, question_id):
     if request.method == 'GET':
-        # Safely fetch the question or return 404
         question = get_object_or_404(Questao, pk=question_id)
         option_list = question.opcao_set.all()
         serializer = OpcaoSerializer(option_list, many=True)
